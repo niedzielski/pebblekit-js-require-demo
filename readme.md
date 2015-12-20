@@ -14,7 +14,14 @@ $ cd pebblekit-js-require-demo &&
   pebble build &&
   pebble install --emulator chalk --logs
 ...
-[13:42:59] javascript> Hello world! - Sent from your javascript application. Woo!
+App install succeeded.
+[15:43:33] javascript> Hello world! - Sent from your javascript application. Woo!
+[15:43:33] javascript> JavaScript Error:
+ReferenceError: testStacktrace is not defined
+    at Object.loader (app/index.js:6:1)
+    at Object.loader.require (loader.js:44:10)
+    at require (loader.js:41:48)
+    at Pebble.<anonymous> (main.js:4:3)
 ```
 1. Cool. Now you're confident this can work.
 
@@ -23,13 +30,16 @@ $ cd pebblekit-js-require-demo &&
 1. Move your project's `src/js/pebble-js-app.js` to `src/js/app/index.js`.
 1. Remove any ready event listener from `src/js/app/index.js`. `index.js` will
    be loaded when the ready event is emitted.
-1. Copy `src/js/loader.js` and `src/js/main.js` from this repo to your project's `src/js/`.
-1. If you haven't made changes to your `wscript`, replace it with the version from this repo. If you have made changes, only add the
-[deltas](https://github.com/niedzielski/pebblekit-js-require-demo/commit/5aae361efb7b4754fc1a47d02eae55f799ec0651#diff-dc6134e3d3c869a052520d86f46371dc).
-1. When adding new modules, place them under `src/js/app/` and `require('./name')` will work.
+1. Copy `src/js/loader.js`, `src/js/safe.js`, and `src/js/main.js` from this
+   repo to your project's `src/js/`.
+1. If you haven't made changes to your `wscript`, replace it with the version
+   from this repo. If you have made changes, only add the
+   [deltas](https://github.com/niedzielski/pebblekit-js-require-demo/commit/5aae361efb7b4754fc1a47d02eae55f799ec0651#diff-dc6134e3d3c869a052520d86f46371dc).
+1. When adding new modules, place them under `src/js/app/` and
+   `require('./name')` will work.
 
 ## License (MIT)
-Portions of wscript and all of src/js/loader.js copied from Pebble.js which is
+loader.js, safe.js, and portions of wscript copied from Pebble.js which
 distributed under an [MIT license](https://github.com/pebble/pebblejs/blob/master/LICENSE).
 All other files are released under public domain.
 
